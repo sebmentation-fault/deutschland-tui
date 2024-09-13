@@ -1,0 +1,37 @@
+Tense,Person,English,German
+Present,I,I eat,ich esse
+Present,you (singular),you eat,du isst
+Present,he/she/it,he/she/it eats,er/sie/es isst
+Present,we,we eat,wir essen
+Present,you (plural),you eat,ihr esst
+Present,they,they eat,sie essen
+PerfectPresent,I,I have eaten,ich habe gegessen
+PerfectPresent,you (singular),you have eaten,du hast gegessen
+PerfectPresent,he/she/it,he/she/it has eaten,er/sie/es hat gegessen
+PerfectPresent,we,we have eaten,wir haben gegessen
+PerfectPresent,you (plural),you have eaten,ihr habt gegessen
+PerfectPresent,they,they have eaten,sie haben gegessen
+Past,I,I ate,ich aß
+Past,you (singular),you ate,du aßt
+Past,he/she/it,he/she/it ate,er/sie/es aß
+Past,we,we ate,wir aßen
+Past,you (plural),you ate,ihr aßt
+Past,they,they ate,sie aßen
+PerfectPast,I,I had eaten,ich hatte gegessen
+PerfectPast,you (singular),you had eaten,du hattest gegessen
+PerfectPast,he/she/it,he/she/it had eaten,er/sie/es hatte gegessen
+PerfectPast,we,we had eaten,wir hatten gegessen
+PerfectPast,you (plural),you had eaten,ihr hattet gegessen
+PerfectPast,they,they had eaten,sie hatten gegessen
+Future,I,I will eat,ich werde essen
+Future,you (singular),you will eat,du wirst essen
+Future,he/she/it,he/she/it will eat,er/sie/es wird essen
+Future,we,we will eat,wir werden essen
+Future,you (plural),you will eat,ihr werdet essen
+Future,they,they will eat,sie werden essen
+PerfectFuture,I,I will have eaten,ich werde gegessen haben
+PerfectFuture,you (singular),you will have eaten,du wirst gegessen haben
+PerfectFuture,he/she/it,he/she/it will have eaten,er/sie/es wird gegessen haben
+PerfectFuture,we,we will have eaten,wir werden gegessen haben
+PerfectFuture,you (plural),you will have eaten,ihr werdet gegessen haben
+PerfectFuture,they,they will have eaten,sie werden gegessen haben

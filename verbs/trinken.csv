@@ -1,0 +1,37 @@
+Tense,Person,English,German
+Present,I,I drink,ich trinke
+Present,you (singular),you drink,du trinkst
+Present,he/she/it,he/she/it drinks,er/sie/es trinkt
+Present,we,we drink,wir trinken
+Present,you (plural),you drink,ihr trinkt
+Present,they,they drink,sie trinken
+PerfectPresent,I,I have drunk,ich habe getrunken
+PerfectPresent,you (singular),you have drunk,du hast getrunken
+PerfectPresent,he/she/it,he/she/it has drunk,er/sie/es hat getrunken
+PerfectPresent,we,we have drunk,wir haben getrunken
+PerfectPresent,you (plural),you have drunk,ihr habt getrunken
+PerfectPresent,they,they have drunk,sie haben getrunken
+Past,I,I drank,ich trank
+Past,you (singular),you drank,du trankst
+Past,he/she/it,he/she/it drank,er/sie/es trank
+Past,we,we drank,wir tranken
+Past,you (plural),you drank,ihr trankt
+Past,they,they drank,sie tranken
+PerfectPast,I,I had drunk,ich hatte getrunken
+PerfectPast,you (singular),you had drunk,du hattest getrunken
+PerfectPast,he/she/it,he/she/it had drunk,er/sie/es hatte getrunken
+PerfectPast,we,we had drunk,wir hatten getrunken
+PerfectPast,you (plural),you had drunk,ihr hattet getrunken
+PerfectPast,they,they had drunk,sie hatten getrunken
+Future,I,I will drink,ich werde trinken
+Future,you (singular),you will drink,du wirst trinken
+Future,he/she/it,he/she/it will drink,er/sie/es wird trinken
+Future,we,we will drink,wir werden trinken
+Future,you (plural),you will drink,ihr werdet trinken
+Future,they,they will drink,sie werden trinken
+PerfectFuture,I,I will have drunk,ich werde getrunken haben
+PerfectFuture,you (singular),you will have drunk,du wirst getrunken haben
+PerfectFuture,he/she/it,he/she/it will have drunk,er/sie/es wird getrunken haben
+PerfectFuture,we,we will have drunk,wir werden getrunken haben
+PerfectFuture,you (plural),you will have drunk,ihr werdet getrunken haben
+PerfectFuture,they,they will have drunk,sie werden getrunken haben

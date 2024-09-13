@@ -1,0 +1,37 @@
+Tense,Person,English,German
+Present,I,I help,ich helfe
+Present,you (singular),you help,du hilfst
+Present,he/she/it,he/she/it helps,er/sie/es hilft
+Present,we,we help,wir helfen
+Present,you (plural),you help,ihr helft
+Present,they,they help,sie helfen
+PerfectPresent,I,I have helped,ich habe geholfen
+PerfectPresent,you (singular),you have helped,du hast geholfen
+PerfectPresent,he/she/it,he/she/it has helped,er/sie/es hat geholfen
+PerfectPresent,we,we have helped,wir haben geholfen
+PerfectPresent,you (plural),you have helped,ihr habt geholfen
+PerfectPresent,they,they have helped,sie haben geholfen
+Past,I,I helped,ich half
+Past,you (singular),you helped,du halfst
+Past,he/she/it,he/she/it helped,er/sie/es half
+Past,we,we helped,wir halfen
+Past,you (plural),you helped,ihr halft
+Past,they,they helped,sie halfen
+PerfectPast,I,I had helped,ich hatte geholfen
+PerfectPast,you (singular),you had helped,du hattest geholfen
+PerfectPast,he/she/it,he/she/it had helped,er/sie/es hatte geholfen
+PerfectPast,we,we had helped,wir hatten geholfen
+PerfectPast,you (plural),you had helped,ihr hattet geholfen
+PerfectPast,they,they had helped,sie hatten geholfen
+Future,I,I will help,ich werde helfen
+Future,you (singular),you will help,du wirst helfen
+Future,he/she/it,he/she/it will help,er/sie/es wird helfen
+Future,we,we will help,wir werden helfen
+Future,you (plural),you will help,ihr werdet helfen
+Future,they,they will help,sie werden helfen
+PerfectFuture,I,I will have helped,ich werde geholfen haben
+PerfectFuture,you (singular),you will have helped,du wirst geholfen haben
+PerfectFuture,he/she/it,he/she/it will have helped,er/sie/es wird geholfen haben
+PerfectFuture,we,we will have helped,wir werden geholfen haben
+PerfectFuture,you (plural),you will have helped,ihr werdet geholfen haben
+PerfectFuture,they,they will have helped,sie werden geholfen haben

@@ -1,0 +1,37 @@
+Tense,Person,English,German
+Present,I,I go,ich gehe
+Present,you (singular),you go,du gehst
+Present,he/she/it,he/she/it goes,er/sie/es geht
+Present,we,we go,wir gehen
+Present,you (plural),you go,ihr geht
+Present,they,they go,sie gehen
+PerfectPresent,I,I have gone,ich bin gegangen
+PerfectPresent,you (singular),you have gone,du bist gegangen
+PerfectPresent,he/she/it,he/she/it has gone,er/sie/es ist gegangen
+PerfectPresent,we,we have gone,wir sind gegangen
+PerfectPresent,you (plural),you have gone,ihr seid gegangen
+PerfectPresent,they,they have gone,sie sind gegangen
+Past,I,I went,ich ging
+Past,you (singular),you went,du gingst
+Past,he/she/it,he/she/it went,er/sie/es ging
+Past,we,we went,wir gingen
+Past,you (plural),you went,ihr gingt
+Past,they,they went,sie gingen
+PerfectPast,I,I had gone,ich war gegangen
+PerfectPast,you (singular),you had gone,du warst gegangen
+PerfectPast,he/she/it,he/she/it had gone,er/sie/es war gegangen
+PerfectPast,we,we had gone,wir waren gegangen
+PerfectPast,you (plural),you had gone,ihr wart gegangen
+PerfectPast,they,they had gone,sie waren gegangen
+Future,I,I will go,ich werde gehen
+Future,you (singular),you will go,du wirst gehen
+Future,he/she/it,he/she/it will go,er/sie/es wird gehen
+Future,we,we will go,wir werden gehen
+Future,you (plural),you will go,ihr werdet gehen
+Future,they,they will go,sie werden gehen
+PerfectFuture,I,I will have gone,ich werde gegangen sein
+PerfectFuture,you (singular),you will have gone,du wirst gegangen sein
+PerfectFuture,he/she/it,he/she/it will have gone,er/sie/es wird gegangen sein
+PerfectFuture,we,we will have gone,wir werden gegangen sein
+PerfectFuture,you (plural),you will have gone,ihr werdet gegangen sein
+PerfectFuture,they,they will have gone,sie werden gegangen sein

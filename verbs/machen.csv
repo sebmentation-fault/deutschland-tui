@@ -1,0 +1,37 @@
+Tense,Person,English,German
+Present,I,I do,ich mache
+Present,you (singular),you do,du machst
+Present,he/she/it,he/she/it does,er/sie/es macht
+Present,we,we do,wir machen
+Present,you (plural),you do,ihr macht
+Present,they,they do,sie machen
+PerfectPresent,I,I have done,ich habe gemacht
+PerfectPresent,you (singular),you have done,du hast gemacht
+PerfectPresent,he/she/it,he/she/it has done,er/sie/es hat gemacht
+PerfectPresent,we,we have done,wir haben gemacht
+PerfectPresent,you (plural),you have done,ihr habt gemacht
+PerfectPresent,they,they have done,sie haben gemacht
+Past,I,I did,ich machte
+Past,you (singular),you did,du machtest
+Past,he/she/it,he/she/it did,er/sie/es machte
+Past,we,we did,wir machten
+Past,you (plural),you did,ihr machtet
+Past,they,they did,sie machten
+PerfectPast,I,I had done,ich hatte gemacht
+PerfectPast,you (singular),you had done,du hattest gemacht
+PerfectPast,he/she/it,he/she/it had done,er/sie/es hatte gemacht
+PerfectPast,we,we had done,wir hatten gemacht
+PerfectPast,you (plural),you had done,ihr hattet gemacht
+PerfectPast,they,they had done,sie hatten gemacht
+Future,I,I will do,ich werde machen
+Future,you (singular),you will do,du wirst machen
+Future,he/she/it,he/she/it will do,er/sie/es wird machen
+Future,we,we will do,wir werden machen
+Future,you (plural),you will do,ihr werdet machen
+Future,they,they will do,sie werden machen
+PerfectFuture,I,I will have done,ich werde gemacht haben
+PerfectFuture,you (singular),you will have done,du wirst gemacht haben
+PerfectFuture,he/she/it,he/she/it will have done,er/sie/es wird gemacht haben
+PerfectFuture,we,we will have done,wir werden gemacht haben
+PerfectFuture,you (plural),you will have done,ihr werdet gemacht haben
+PerfectFuture,they,they will have done,sie werden gemacht haben

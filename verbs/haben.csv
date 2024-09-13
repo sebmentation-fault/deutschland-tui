@@ -1,0 +1,37 @@
+Tense,Person,English,German
+Present,I,I have,ich habe
+Present,you (singular),you have,du hast
+Present,he/she/it,he/she/it has,er/sie/es hat
+Present,we,we have,wir haben
+Present,you (plural),you have,ihr habt
+Present,they,they have,sie haben
+PerfectPresent,I,I have had,ich habe gehabt
+PerfectPresent,you (singular),you have had,du hast gehabt
+PerfectPresent,he/she/it,he/she/it has had,er/sie/es hat gehabt
+PerfectPresent,we,we have had,wir haben gehabt
+PerfectPresent,you (plural),you have had,ihr habt gehabt
+PerfectPresent,they,they have had,sie haben gehabt
+Past,I,I had,ich hatte
+Past,you (singular),you had,du hattest
+Past,he/she/it,he/she/it had,er/sie/es hatte
+Past,we,we had,wir hatten
+Past,you (plural),you had,ihr hattet
+Past,they,they had,sie hatten
+PerfectPast,I,I had had,ich hatte gehabt
+PerfectPast,you (singular),you had had,du hattest gehabt
+PerfectPast,he/she/it,he/she/it had had,er/sie/es hatte gehabt
+PerfectPast,we,we had had,wir hatten gehabt
+PerfectPast,you (plural),you had had,ihr hattet gehabt
+PerfectPast,they,they had had,sie hatten gehabt
+Future,I,I will have,ich werde haben
+Future,you (singular),you will have,du wirst haben
+Future,he/she/it,he/she/it will have,er/sie/es wird haben
+Future,we,we will have,wir werden haben
+Future,you (plural),you will have,ihr werdet haben
+Future,they,they will have,sie werden haben
+PerfectFuture,I,I will have had,ich werde gehabt haben
+PerfectFuture,you (singular),you will have had,du wirst gehabt haben
+PerfectFuture,he/she/it,he/she/it will have had,er/sie/es wird gehabt haben
+PerfectFuture,we,we will have had,wir werden gehabt haben
+PerfectFuture,you (plural),you will have had,ihr werdet gehabt haben
+PerfectFuture,they,they will have had,sie werden gehabt haben
