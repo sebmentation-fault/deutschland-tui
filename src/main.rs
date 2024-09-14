@@ -4,17 +4,21 @@ use rand::Rng;
 use ratatui::{
     buffer::Buffer,
     crossterm::event::{self, Event, KeyCode, KeyEvent, KeyEventKind},
-    layout::{Alignment, Rect},
-    style::Stylize,
+    layout::{Alignment, Constraint, Rect},
+    style::{Style, Stylize},
     symbols::border,
     text::{Line, Text},
     widgets::{
         block::{Position, Title},
-        Block, Paragraph, Widget,
+        Block, Cell, Paragraph, Row, Table, TableState, Widget,
     },
     DefaultTerminal, Frame,
 };
-use std::{error::Error, fs::File, io};
+use std::{
+    error::Error,
+    fs::{self, File},
+    io,
+};
 
 // --- Use the person, tense, verb structs ---
 mod person;
@@ -40,7 +44,7 @@ pub struct Args {
 
     /// The verb to focus on. Could extend so this is Option too.
     #[arg(short, long)]
-    verb: String,
+    verb: Option<String>,
 
     /// The tense (to focus one specifically)
     #[arg(short, long)]
@@ -83,17 +87,22 @@ fn parse_conjugations(verb: &Verb) -> Result<Vec<Conjugation>, Box<dyn Error>> {
 }
 
 /// The application state
-#[derive(Debug)]
 pub struct App {
     cur_question: u8,
     total_questions: u8,
     total_correct: u8,   // Total correct answers
     total_incorrect: u8, // Total incorrect answers
 
+    // if None, then show the select screen. Can choose to be specific or to be open to all
+    table_state: TableState,
+    verbs: Vec<String>, // the list of all the verbs (german + english)
+    verb: Option<Verb>, // the chosen verb
+
     cur_conjugation: usize,         // Index to the conjugation that we are on
     conjugations: Vec<Conjugation>, // All the conjugations we are allowed to ask
     cur_response: String,           // The current response from the user
     cur_response_incorrect: Option<bool>, // If entered, then if the response was correct
+
     exit: Option<bool>,
 }
 
@@ -109,8 +118,14 @@ impl App {
         Ok(self.total_correct)
     }
 
-    fn draw(&self, frame: &mut Frame) {
-        frame.render_widget(self, frame.area());
+    fn draw(&mut self, frame: &mut Frame) {
+        // if we are rendering table we pass in different arguments than to render_widget
+        if self.verb.is_none() {
+            self.render_verbs_table(frame);
+            return;
+        }
+
+        frame.render_widget(&*self, frame.area());
     }
 
     fn handle_events(&mut self) -> io::Result<()> {
@@ -126,18 +141,49 @@ impl App {
     }
 
     fn handle_key_event(&mut self, key_event: KeyEvent) {
+        if self.verb.is_none() {
+            self.handle_key_event_select_verb(key_event);
+            return;
+        }
+
+        if self.exit.is_some() {
+            self.handle_key_event_game_over(key_event);
+            return;
+        }
+
+        self.handle_key_event_learning(key_event);
+    }
+
+    fn handle_key_event_select_verb(&mut self, key_event: KeyEvent) {
+        match key_event.code {
+            KeyCode::Esc => self.exit = Some(true),
+            KeyCode::Enter => {
+                // set the verb
+                if let Some(i) = self.table_state.selected() {
+                    self.verb = Some(Verb::from_str(
+                        self.verbs
+                            .get(i)
+                            .expect("Selected verb could not be getted"),
+                    ));
+                } else {
+                    panic!("No verb selected, but is being selected")
+                }
+
+                self.conjugations = parse_conjugations(&self.verb.unwrap())
+                    .expect("Could not parse the conjugations");
+                self.cur_conjugation = rand::thread_rng().gen_range(0..self.conjugations.len());
+            }
+            KeyCode::Up => self.previous_table_item(),
+            KeyCode::Char('k') => self.previous_table_item(),
+            KeyCode::Down => self.next_table_item(),
+            KeyCode::Char('j') => self.next_table_item(),
+            _ => {}
+        }
+    }
+
+    fn handle_key_event_learning(&mut self, key_event: KeyEvent) {
         match key_event.code {
             KeyCode::Enter => {
-                // user wants to repeat
-                if self.exit.is_some() {
-                    self.cur_question = 0;
-                    self.total_correct = 0;
-                    self.total_incorrect = 0;
-                    self.exit = None;
-                    return;
-                }
-                // user is still answering questions
-                // if it is incorrect, we basically just wait for another enter key
                 if self.cur_response_incorrect.is_none() {
                     self.check_answer();
                 } else {
@@ -151,6 +197,54 @@ impl App {
             KeyCode::Char(c) => self.cur_response.push(c),
             _ => {}
         }
+    }
+
+    fn handle_key_event_game_over(&mut self, key_event: KeyEvent) {
+        match key_event.code {
+            KeyCode::Enter => {
+                self.cur_question = 0;
+                self.total_correct = 0;
+                self.total_incorrect = 0;
+                self.exit = None;
+            }
+            KeyCode::Esc => self.exit = Some(true),
+            // select a new verb and go again :)
+            _ => {
+                self.cur_question = 0;
+                self.total_correct = 0;
+                self.total_incorrect = 0;
+                self.verb = None;
+                self.exit = None;
+            }
+        }
+    }
+
+    pub fn next_table_item(&mut self) {
+        let i = match self.table_state.selected() {
+            Some(i) => {
+                if i >= self.verbs.len() - 1 {
+                    0
+                } else {
+                    i + 1
+                }
+            }
+            None => 0,
+        };
+        self.table_state.select(Some(i));
+    }
+
+    pub fn previous_table_item(&mut self) {
+        let i = match self.table_state.selected() {
+            Some(i) => {
+                if i == 0 {
+                    self.verbs.len() - 1
+                } else {
+                    i - 1
+                }
+            }
+            None => 0,
+        };
+        self.table_state.select(Some(i));
     }
 
     /// Checks the current answer and updates the state accordingly
@@ -252,10 +346,10 @@ impl App {
         let text = Text::from(vec![
             Line::from(""),
             Line::from(""),
-            Line::from(vec!["English: ".into(), conj.english.to_string().yellow()]),
+            Line::from(vec!["English: ".into(), conj.english.to_string().blue()]),
             Line::from(vec![
                 "Your input: ".into(),
-                self.cur_response.to_string().blue(),
+                self.cur_response.to_string().yellow(),
             ]),
         ]);
 
@@ -294,7 +388,7 @@ impl App {
         let text = Text::from(vec![
             Line::from(""),
             Line::from(""),
-            Line::from(vec!["English: ".into(), conj.english.to_string().yellow()]),
+            Line::from(vec!["English: ".into(), conj.english.to_string().blue()]),
             Line::from(vec![
                 "Your input: ".into(),
                 self.cur_response.to_string().green(),
@@ -336,7 +430,7 @@ impl App {
         let text = Text::from(vec![
             Line::from(""),
             Line::from(""),
-            Line::from(vec!["English: ".into(), conj.english.to_string().yellow()]),
+            Line::from(vec!["English: ".into(), conj.english.to_string().blue()]),
             Line::from(vec![
                 "Your input: ".into(),
                 self.cur_response.to_string().red(),
@@ -353,6 +447,39 @@ impl App {
             .render(area, buf);
     }
 
+    fn render_verbs_table(&mut self, frame: &mut Frame) {
+        let title = Title::from(" Select a Verb ".bold());
+        let instructions = Title::from(Line::from(vec![
+            " Prev ".into(),
+            "<Up> ".blue().bold(),
+            " Next ".into(),
+            "<Down> ".blue().bold(),
+        ]));
+        let block = Block::bordered()
+            .title(title.alignment(Alignment::Center))
+            .title(
+                instructions
+                    .alignment(Alignment::Center)
+                    .position(Position::Bottom),
+            )
+            .border_set(border::THICK);
+
+        let rows: Vec<Row> = self
+            .verbs
+            .iter()
+            .map(|s| Row::new(vec![Cell::from(s.as_str())]))
+            .collect();
+        let widths = [Constraint::Length(20)];
+
+        let table = Table::new(rows, widths)
+            .header(Row::new(vec![Cell::from("Verbs")]))
+            .highlight_style(Style::new().reversed())
+            .highlight_symbol(">>")
+            .block(block);
+
+        frame.render_stateful_widget(table, frame.area(), &mut self.table_state)
+    }
+
     fn render_score(&self, area: Rect, buf: &mut Buffer) {
         let title = Title::from(" Lesson Completed ".bold());
         let instructions = Title::from(Line::from(vec![
@@ -360,6 +487,8 @@ impl App {
             "<ESC> ".blue().bold(),
             " Attempt Again ".into(),
             "<Enter> ".blue().bold(),
+            " Select New Verb ".into(),
+            "<Anything> ".blue().bold(),
         ]));
         let block = Block::bordered()
             .title(title.alignment(Alignment::Center))
@@ -393,13 +522,29 @@ fn main() -> Result<(), io::Error> {
     if !(1..100).contains(&n) {
         panic!("n is either too small or too large");
     }
-    let verb = Verb::from_str(&args.verb);
+    let verb = args.verb.map(|v| Verb::from_str(&v));
 
-    // 2. Init ratatui
+    // 2. Get the possible verbs
+    // get all the file names in the ./verbs directory
+    let verb_files = fs::read_dir("./verbs")
+        .expect("Could not find/read the verbs directory")
+        .map(|res| res.map(|e| e.path()))
+        .collect::<Result<Vec<_>, io::Error>>()
+        .expect("Could not collect the files");
+    // strip the file extension and ./verbs prefix if exists
+    let verbs = verb_files
+        .iter()
+        .map(|p| {
+            p.file_name()
+                .expect("Could not get the file name")
+                .to_str()
+                .expect("Could not convert the file name to a string")
+                .replace(".csv", "")
+        })
+        .collect::<Vec<String>>();
+
+    // 3. Init ratatui
     let mut terminal = ratatui::init();
-
-    // 3. Load the conjugations
-    let conjugations = parse_conjugations(&verb).expect("Conjugations was not parsed");
 
     // 4. Loop for each question
     let mut app = App {
@@ -407,8 +552,11 @@ fn main() -> Result<(), io::Error> {
         total_questions: n,
         total_correct: 0,
         total_incorrect: 0,
-        cur_conjugation: rand::thread_rng().gen_range(0..conjugations.len()),
-        conjugations,
+        table_state: TableState::default().with_selected(0),
+        verbs,
+        verb,
+        cur_conjugation: usize::MAX, // so that things definitely panic if not updated
+        conjugations: vec![],
         cur_response: String::new(),
         cur_response_incorrect: None,
         exit: None,
